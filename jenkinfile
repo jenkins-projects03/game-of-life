@@ -1,0 +1,13 @@
+node('MaVEN') {
+    stage('version conttrol') {
+        git url: 'https://github.com/jenkins-projects03/game-of-life.git',
+        branch: 'scripted-pipeline'
+        poll: false
+    }
+    stage('build with maven') {
+        sh 'export PATH=/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin:$PATH'
+    }
+    stage('archive the artifacts') {
+        archiveArtifacts artifacts: '**/target/gameoflife.war'
+    }
+}
