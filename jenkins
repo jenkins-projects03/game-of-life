@@ -2,14 +2,14 @@ pipeline {
    agent { label 'JDK_8' }
        stages {
          stage ( 'vcs' ) {
-	   staeps{
+	   steps{
 	     git url: 'https://github.com/jenkins-projects03/game-of-life.git',
 	     branch: 'decla'
 	      }
 	     }
-	 stage ( 'packahe' ) {
+	 stage ( 'package' ) {
 	   steps {
-	     sh 'export PATH=/usr/lib/jvm/java-1.8.0.openjdk-amd64/bin:$PATH && mvn package'
+	     sh 'export PATH="/usr/lib/jvm/java-1.8.0.openjdk-amd64/bin:$PATH" && mvn package'
 	     }
 	    }
         }
