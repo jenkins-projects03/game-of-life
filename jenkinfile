@@ -1,13 +1,14 @@
-node('MaVEN') {
+node('MaVEN_JDK8') {
     stage('version conttrol') {
         git url: 'https://github.com/jenkins-projects03/game-of-life.git',
         branch: 'scripted-pipeline'
         poll: false
     }
     stage('build with maven') {
-        sh 'export PATH=/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin:$PATH'
+        sh 'export PATH=/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin:$PATH && mvn package'
     }
     stage('archive the artifacts') {
         archiveArtifacts artifacts: '**/target/gameoflife.war'
+        allowEmptyArchive: false
     }
 }
